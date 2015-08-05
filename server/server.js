@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var hat = require('hat');
 var bcrypt = require('bcrypt-nodejs');
+var superagent = require('superagent');
 
 app.use(express.static('client'));
 
@@ -50,6 +51,19 @@ app.post('/login', function(req, res){
 				}
 			});
 		});
+});
+
+app.post('/slack', function(req, response) {
+	var message = req.body;
+	superagent.post('https://hooks.slack.com/services/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').send(message).end(function(err,res){
+		if (res.ok){
+			console.log ("yay");}
+		else {
+			console.log(err);
+		}
+		response.status(200);
+	}
+)
 });
 
 app.listen(5000);

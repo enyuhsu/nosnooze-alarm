@@ -1,2 +1,21 @@
-<div id="clockbox">
+<div ng-controller="homeController as homectrl">
+	<h1> No-Snooze Alarm Clock</h1>
+	<div id="clockbox">
+	</div>
+	<br>
+	<form class="form" ng-submit="homectrl.setAlarm()">
+		When would you like me to wake you up?
+		<input type = "number" min = "1" max = "12" ng-model="homectrl.alarmTime.hour">
+		<input type = 'number' min = '0' max = '59' ng-model = "homectrl.alarmTime.min">
+		<br>
+		<input type = "radio" name = "ampm" value="AM" ng-model ="homectrl.alarmTime.ampm">AM
+		<br>
+		<input type = "radio" name = "ampm" value="PM" ng-model ="homectrl.alarmTime.ampm">PM
+		<br>
+		<br>
+		<input type="submit">
+	</form>
+	<div>
+		{{homectrl.alarmMessage}}
+	</div>
 </div>
